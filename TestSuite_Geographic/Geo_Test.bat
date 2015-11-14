@@ -1,5 +1,5 @@
-cd E:\USU_Research_work\MMW_PROJECT\TauDEM_Project\TauDEM_Geo_Deliverables\Tested_Results\GEO_TEST\New folder
-Set TDIR=E:\USU_Research_work\MMW_PROJECT\TauDEM_Project\TauDEM_Geo_Deliverables\Taudem5PCVS2010Soln_512_long_int32\Taudem5PCVS2010\x64\Release
+cd D:\Scratch\TestSuite_Geographic\
+Set TDIR=D:\Dropbox\Projects\TauDEM\Programming\TauDEM5GDAL\Taudem5PCVS2010\x64\Release
 set MDIR1=C:\Program Files\Microsoft HPC Pack 2012\Bin\
 set MDIR2=C:\Program Files\GDAL
 set path=%MDIR1%;%MDIR2%;%TDIR%
@@ -26,8 +26,8 @@ mpiexec -n 5 Streamnet -fel enogeofel.tif -p enogeop.tif -ad8 enogeoad8.tif -src
 Rem stream network slope area
 mpiexec -n 3 SlopeArea -slp enogeoslp.tif -sca enogeosca.tif -sa enogeosa.tif -par 2 1
 mpiexec -n 8 D8FlowpathExtremeUp -p enogeop.tif -sa enogeosa.tif -ssa enogeossa1.tif -o Outlets.shp
-mpiexec -n 4 Dropanalysis -p enogeop.tif -fel enogeofel.tif -ad8 enogeoad8.tif -ssa enogeossa1.tif -drp enogeodrp1.txt -o Outlets.shp -par 5000 50000 10 1 
-mpiexec -n 5 Threshold -ssa enogeossa1.tif -src enogeosrc1.tif -thresh 15000
+mpiexec -n 4 Dropanalysis -p enogeop.tif -fel enogeofel.tif -ad8 enogeoad8.tif -ssa enogeossa1.tif -drp enogeodrp1.txt -o Outlets.shp -par 10 2000 10 1 
+mpiexec -n 5 Threshold -ssa enogeossa1.tif -src enogeosrc1.tif -thresh 32
 mpiexec -n 8 Streamnet -fel enogeofel.tif -p enogeop.tif -ad8 enogeoad8.tif -src enogeosrc1.tif -ord enogeoord5.tif -tree enogeotree1.dat -coord enogeocoord1.dat -net enogeonet1.shp -w enogeow1.tif -o Outlets.shp -sw
 mpiexec -n 3 LengthArea -plen enogeoplen.tif -ad8 enogeoad8.tif -ss enogeolass.tif -par 0.03 1.3
 
